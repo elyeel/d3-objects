@@ -1,3 +1,4 @@
+/*
 const transpose = function(matrix) {
   // Put your solution here
   let result = [];
@@ -15,6 +16,23 @@ const transpose = function(matrix) {
   }
   return result;
 };
+*/
+
+const transpose = (matrix) => {
+  let result = [];
+  matrix.map((row, index) => {
+    row.map((elem, indexe) => {
+      if (index === 0) {
+        const temp = [];
+        temp.push(matrix[index][indexe]);
+        result.push(temp);
+      } else {
+        result[indexe].push(matrix[index][indexe]);
+      }
+    })
+  })
+  return result;
+}
 
 // Do not edit this function.
 const printMatrix = (matrix) => {
