@@ -100,5 +100,18 @@ const printAll = (data) => {
   return result;
 };
 
+const unrequitedFollowers = (data) => {
+  const feed = Object.entries(printAll(data));
+  const result = {};
+  for (let person of feed) {
+    result[person[0]] = [];
+    person[1].follows.map((test) => {
+      if (person[1].followers.indexOf(test) < 0) { //logic in finding unrequited
+        result[person[0]].push(test);
+      }
+    })
+  }
+  return result;
+}
 
-console.log(JSON.stringify(printAll(data), null, 2));
+// console.log(JSON.stringify(printAll(data), null, 2));
