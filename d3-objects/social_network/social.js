@@ -37,7 +37,29 @@ function convObj (data) {
 }
 
 const biggestFollower = (data) => {
-  console.log(convObj(data));
+  let follower = 0;
+  let name = '';
+  Object.entries(data).map((person, index) => {
+    if (follower < person[1].follows.length) {
+      follower = person[1].follows.length;
+      name = person[1].name;
+    }
+  })
+  return name;
 }
 
-alert("connected");
+const mostPopular = (data) => {
+  const pop = {};
+  const popular = Object.entries(data).map((person, index) => {
+    if (person[1].follows) {
+      return person[1].follows;
+    }
+  }).flat().sort().map((person) => {
+    if (pop[person]) {
+      pop[person] += 1;
+    } else {
+      pop[person] = 1; 
+    }
+  });
+  return pop;
+}
