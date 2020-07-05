@@ -50,16 +50,42 @@ const biggestFollower = (data) => {
 
 const mostPopular = (data) => {
   const pop = {};
+  let max = 0;
   const popular = Object.entries(data).map((person, index) => {
     if (person[1].follows) {
       return person[1].follows;
     }
   }).flat().sort().map((person) => {
-    if (pop[person]) {
-      pop[person] += 1;
+    if (pop[data[person].name]) {
+      pop[data[person].name] += 1;
     } else {
-      pop[person] = 1; 
+      pop[data[person].name] = 1; 
     }
   });
-  return pop;
+
+  const popularPeople = Object.entries(pop).map((name, index) => {
+    if (name[1] > max) {
+      max = name[1];
+    }
+  });
+  const result = [];
+  Object.entries(pop).map((name, index) => {
+    if (name[1] === max) {
+      result.push(name[0]);
+    }
+  })
+  return result;
+}
+
+const printAll = (data) => {
+  const result = {};
+  for (person of Object.entries(data)) {
+    result[person[1].name] = {};
+    result[person[1].name].age = person[1].age;
+    result[person[1].name].follows = person[1].follows.map((following) => {
+      return data[following].name;
+    });
+    result[person[1].name].follower = 
+  }
+  return result;
 }
