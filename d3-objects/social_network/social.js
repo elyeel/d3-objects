@@ -128,4 +128,34 @@ const mostFollowersOver30 = (data) => {
   }
   return result;
 };
+
+const mostFollowsOver30 = (data) => {
+  // const mostPop = mostPopular(data);
+  const feed = printAll(data);
+  const result = { Category: "Follows Most People over 30" };
+
+  for (let person of Object.entries(feed)) {
+    result[person[0]] = [];
+    person[1].follows.map((name) => {
+      if (feed[name].age > 30) {
+        result[person[0]].push(name);
+      }
+    })
+  }
+  return result;
+};
 // console.log(JSON.stringify(printAll(data), null, 2));
+
+const followersReach = (dt) => {
+  const feedData = printAll(dt);
+  const fd = Object.entries(printAll(dt));
+  const result = {"Category": "Reach of Followers"};
+  for (let person of fd) {
+    result[person[0]] = [];
+    person[1].followers.map((name) => {
+      result[person[0]].push(name);
+      result[person[0]].push(feedData[name].followers);
+    })
+  }
+  return result;
+}
