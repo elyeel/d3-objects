@@ -149,7 +149,7 @@ const mostFollowsOver30 = (data) => {
 const followersReach = (dt) => {
   const feedData = printAll(dt);
   const fd = Object.entries(printAll(dt));
-  const result = {"Category": "Reach of Followers"};
+  const result = {};
   for (let person of fd) {
     result[person[0]] = [];
     person[1].followers.map((name) => {
@@ -157,5 +157,20 @@ const followersReach = (dt) => {
       result[person[0]].push(feedData[name].followers);
     })
   }
-  return result;
+  const temp = {"Category": "Reach of Followers"};
+  for (let [name, reach] of Object.entries(result)) {
+    temp[name] = [];
+    reach.map((member) => {
+      if (Array.isArray(member)) {
+        for (let pers of member) {
+          temp[name].push(pers);
+        }
+      } else {
+        temp[name].push(member);
+      }
+    })
+    temp[name].reach = temp[name].length;
+  }
+  return temp;
 }
+
