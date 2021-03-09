@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/w2d2/matrix_transposition.js"
+      "program": "${workspaceFolder}/d5/arrayRecursion.js"
     }
   ]
 }
